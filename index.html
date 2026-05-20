@@ -1,390 +1,501 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Objetivos 2026 - NATEEVO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Objetivos 2026 — NATEEVO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #080808;
+  --surface: #111111;
+  --surface2:#181818;
+  --border:  rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.05);
+  --text:    #F0EEEB;
+  --muted:   #6B6B6B;
+  --muted2:  #444;
+  --orange:  #FF5A1F;
+  --orange-d:rgba(255,90,31,0.15);
+  --c1: #FF5A1F;
+  --c2: #CC39B0;
+  --c3: #1D9EE2;
+  --c4: #8B5CF6;
+  --c5: #E8A020;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
-      padding: 40px;
-    }
+/* ── HEADER ── */
+header{
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  padding:0 48px;
+  height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:200;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  background:rgba(8,8,8,0.92);
+}
+.logo-svg{height:26px;width:auto;display:block;}
+.header-right{display:flex;align-items:center;gap:20px;}
+.header-year{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);
+}
+.header-divider{width:1px;height:18px;background:var(--border);}
+.header-count{font-size:12px;color:var(--muted);font-weight:400;}
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      background: #ffffff;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.08);
-    }
+/* ── CONTROLS ── */
+.controls{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:14px 48px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  position:sticky;top:68px;z-index:100;
+}
+.ctrl-label{
+  font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.12em;color:var(--muted);white-space:nowrap;
+}
+.ctrl-select{
+  appearance:none;
+  background:var(--surface2);
+  border:1px solid var(--border);border-radius:8px;
+  padding:8px 30px 8px 12px;
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  color:var(--text);cursor:pointer;min-width:160px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23555' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+  transition:border-color .15s;
+}
+.ctrl-select:focus{outline:none;border-color:var(--orange);}
+.ctrl-select option{background:var(--surface2);}
+.ctrl-sep{width:1px;height:22px;background:var(--border);margin:0 2px;}
+.btn-clear{
+  background:transparent;border:1px solid var(--border);border-radius:8px;
+  padding:8px 14px;font-family:'DM Sans',sans-serif;font-size:12px;
+  font-weight:500;cursor:pointer;color:var(--muted);transition:all .15s;
+}
+.btn-clear:hover{border-color:rgba(255,255,255,0.2);color:var(--text);}
+.ctrl-results{margin-left:auto;font-size:12px;color:var(--muted);}
 
-    .header {
-      background: linear-gradient(135deg, #0f172a 0%, #111827 40%, #1d4ed8 100%);
-      color: white;
-      padding: 48px;
-      position: relative;
-      overflow: hidden;
-    }
+/* ── MAIN ── */
+main{max-width:860px;margin:0 auto;padding:32px 24px 80px;}
 
-    .header::before {
-      content: "";
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 50%;
-      top: -120px;
-      right: -120px;
-    }
+/* ── CARD ── */
+.profile-card{
+  background:var(--surface);
+  border-radius:12px;
+  border:1px solid var(--border);
+  margin-bottom:16px;
+  overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.profile-card:hover{
+  border-color:rgba(255,255,255,0.14);
+  box-shadow:0 4px 40px rgba(0,0,0,0.5);
+}
 
-    .header::after {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 50%;
-      bottom: -90px;
-      right: 120px;
-    }
+/* Card head */
+.card-head{
+  padding:24px 28px 20px;
+  display:flex;align-items:flex-start;
+  justify-content:space-between;gap:16px;
+  border-bottom:1px solid var(--border);
+}
+.ch-left{flex:1;min-width:0;}
+.person-name{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:21px;
+  color:#fff;margin-bottom:10px;line-height:1.15;
+}
+.person-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.meta-pill{
+  font-size:11px;font-weight:500;
+  border:1px solid var(--border);border-radius:20px;
+  padding:3px 10px;color:var(--muted);
+}
+.meta-pill-tl{
+  border-color:rgba(255,90,31,0.3);
+  color:var(--orange);background:var(--orange-d);
+}
+.meta-pill-adv{
+  border-color:rgba(232,160,32,0.3);
+  color:var(--c5);background:rgba(232,160,32,0.1);
+}
+.ch-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
+.card-btns{display:flex;gap:7px;}
+.btn-card{
+  display:flex;align-items:center;gap:5px;
+  padding:6px 13px;border-radius:7px;
+  font-size:11px;font-weight:600;cursor:pointer;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);font-family:'DM Sans',sans-serif;
+  transition:all .15s;letter-spacing:0.03em;
+}
+.btn-card:hover{border-color:rgba(255,255,255,0.18);color:var(--text);}
+.btn-share:hover{border-color:rgba(255,90,31,0.5)!important;color:var(--orange)!important;background:var(--orange-d)!important;}
+.btn-pdf:hover{border-color:rgba(139,92,246,0.4)!important;color:#A78BFA!important;background:rgba(139,92,246,0.1)!important;}
 
-    .brand {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
+/* Weights */
+.weights-section{
+  padding:14px 28px;
+  background:var(--surface2);
+  border-bottom:1px solid var(--border);
+}
+.wlabel{
+  font-size:9px;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.14em;color:var(--muted2);margin-bottom:9px;
+}
+.wbar-track{
+  height:5px;border-radius:3px;
+  display:flex;gap:2px;overflow:hidden;margin-bottom:10px;
+}
+.wbar-seg{height:100%;border-radius:2px;opacity:0.85;}
+.wlegend{display:flex;gap:16px;flex-wrap:wrap;}
+.wleg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);}
+.wleg-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0;}
+.wleg-pct{font-weight:700;color:var(--text);}
 
-    .brand h1 {
-      font-size: 42px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -1px;
-    }
+/* Objectives */
+.obj-row{
+  padding:18px 28px;
+  border-bottom:1px solid var(--border2);
+  display:grid;
+  grid-template-columns:38px 1fr 52px;
+  gap:14px;align-items:start;
+}
+.obj-row:last-child{border-bottom:none;}
+.obj-icon-wrap{
+  width:34px;height:34px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;margin-top:2px;flex-shrink:0;
+}
+.obj-body{min-width:0;}
+.obj-type-label{
+  font-size:9px;font-weight:800;letter-spacing:0.14em;
+  text-transform:uppercase;margin-bottom:6px;
+  display:flex;align-items:center;gap:6px;
+}
+.obj-num{
+  width:15px;height:15px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:8px;font-weight:800;color:#000;flex-shrink:0;
+}
+.obj-text{font-size:13.5px;line-height:1.7;color:#A0A0A0;}
+.obj-pct{
+  font-family:'Syne',sans-serif;font-size:18px;font-weight:700;
+  text-align:right;padding-top:1px;
+}
 
-    .brand p {
-      font-size: 18px;
-      opacity: 0.85;
-    }
+.type-p1 .obj-icon-wrap{background:rgba(255,90,31,0.12);}
+.type-p1 .obj-type-label{color:var(--c1);}
+.type-p1 .obj-num{background:var(--c1);}
+.type-p1 .obj-pct{color:var(--c1);}
 
-    .year {
-      font-size: 22px;
-      font-weight: 600;
-      background: rgba(255,255,255,0.1);
-      padding: 12px 18px;
-      border-radius: 14px;
-      backdrop-filter: blur(8px);
-    }
+.type-p2 .obj-icon-wrap{background:rgba(204,57,176,0.1);}
+.type-p2 .obj-type-label{color:var(--c2);}
+.type-p2 .obj-num{background:var(--c2);}
+.type-p2 .obj-pct{color:var(--c2);}
 
-    .profile {
-      padding: 36px 48px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-    }
+.type-form .obj-icon-wrap{background:rgba(29,158,226,0.1);}
+.type-form .obj-type-label{color:var(--c3);}
+.type-form .obj-num{background:var(--c3);}
+.type-form .obj-pct{color:var(--c3);}
 
-    .profile-card {
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 20px;
-    }
+.type-cv .obj-icon-wrap{background:rgba(139,92,246,0.1);}
+.type-cv .obj-type-label{color:var(--c4);}
+.type-cv .obj-num{background:var(--c4);}
+.type-cv .obj-pct{color:var(--c4);}
 
-    .profile-card span {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: #64748b;
-      margin-bottom: 10px;
-    }
+.type-adv .obj-icon-wrap{background:rgba(232,160,32,0.1);}
+.type-adv .obj-type-label{color:var(--c5);}
+.type-adv .obj-num{background:var(--c5);}
+.type-adv .obj-pct{color:var(--c5);}
 
-    .profile-card h3 {
-      font-size: 22px;
-      color: #0f172a;
-      font-weight: 700;
-    }
+/* Empty */
+.empty-state{text-align:center;padding:80px 24px;color:var(--muted);}
+.empty-state h3{font-family:'Syne',sans-serif;font-size:18px;color:var(--text);margin-bottom:8px;}
+.empty-state p{font-size:13px;}
 
-    .content {
-      padding: 48px;
-    }
+/* Toast */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  background:var(--surface);color:var(--text);
+  padding:11px 18px;border-radius:9px;font-size:13px;font-weight:500;
+  border:1px solid var(--border);
+  box-shadow:0 8px 32px rgba(0,0,0,0.6);
+  opacity:0;transform:translateY(6px);
+  transition:opacity .25s,transform .25s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateY(0);}
 
-    .section-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 32px;
-      color: #0f172a;
-      letter-spacing: -0.5px;
-    }
-
-    .objective-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .objective-card {
-      border-radius: 22px;
-      padding: 28px;
-      position: relative;
-      overflow: hidden;
-      min-height: 240px;
-      transition: transform 0.2s ease;
-    }
-
-    .objective-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .objective-card::before {
-      content: "";
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-    }
-
-    .objective-number {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      margin-bottom: 18px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      position: relative;
-      z-index: 2;
-    }
-
-    .objective-card h3 {
-      font-size: 20px;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .objective-card p {
-      font-size: 15px;
-      line-height: 1.7;
-      opacity: 0.95;
-      position: relative;
-      z-index: 2;
-    }
-
-    .dark {
-      background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
-      color: white;
-    }
-
-    .blue {
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-      color: white;
-    }
-
-    .purple {
-      background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
-      color: white;
-    }
-
-    .light {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      color: #111827;
-    }
-
-    .light .objective-number {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    .advisor {
-      margin-top: 28px;
-      padding: 32px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .advisor::after {
-      content: "MENTOR";
-      position: absolute;
-      right: 24px;
-      bottom: 8px;
-      font-size: 64px;
-      font-weight: 800;
-      opacity: 0.06;
-      letter-spacing: 4px;
-    }
-
-    .advisor h3 {
-      font-size: 22px;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .advisor p {
-      line-height: 1.8;
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer {
-      padding: 28px 48px;
-      background: #f8fafc;
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer p {
-      color: #64748b;
-      font-size: 14px;
-    }
-
-    .badge {
-      background: #dbeafe;
-      color: #1d4ed8;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 10px 14px;
-      border-radius: 999px;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 20px;
-      }
-
-      .profile,
-      .objective-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .header,
-      .content,
-      .profile,
-      .footer {
-        padding: 28px;
-      }
-
-      .brand {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .brand h1 {
-        font-size: 32px;
-      }
-    }
-  </style>
+/* ── PRINT ── */
+@media print {
+  body{background:#fff;color:#000;}
+  header{background:#080808!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .controls{display:none!important;}
+  .card-btns{display:none!important;}
+  .profile-card{
+    background:#fff!important;color:#000!important;
+    border:1px solid #ddd!important;
+    box-shadow:none;break-inside:avoid;margin-bottom:16px;
+  }
+  .card-head{border-bottom:1px solid #eee!important;}
+  .weights-section{background:#f5f5f5!important;border-bottom:1px solid #eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .person-name{color:#000!important;}
+  .obj-text{color:#444!important;}
+  .wlabel{color:#888!important;}
+  .wleg-item{color:#666!important;}
+  .wleg-pct{color:#000!important;}
+  .obj-icon-wrap{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .wbar-seg{-webkit-print-color-adjust:exact;print-color-adjust:exact;opacity:1!important;}
+  .obj-num{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .print-hide{display:none!important;}
+  .profile-card.print-hide{display:none!important;}
+  main{padding:8px 0;}
+  .meta-pill{border-color:#ccc!important;color:#555!important;background:transparent!important;}
+}
+</style>
 </head>
 <body>
-  <div class="container">
 
-    <div class="header">
-      <div class="brand">
-        <div>
-          <h1>Objetivos 2026</h1>
-          <p>Plan de desarrollo individual · NATEEVO</p>
-        </div>
-        <div class="year">2026</div>
-      </div>
-    </div>
-
-    <div class="profile">
-      <div class="profile-card">
-        <span>Profesional</span>
-        <h3>Amparo</h3>
-      </div>
-
-      <div class="profile-card">
-        <span>Team Leader</span>
-        <h3>Laura</h3>
-      </div>
-
-      <div class="profile-card">
-        <span>Categoría</span>
-        <h3>V3 · Sr. Consultant</h3>
-      </div>
-    </div>
-
-    <div class="content">
-      <h2 class="section-title">Objetivos individuales</h2>
-
-      <div class="objective-grid">
-
-        <div class="objective-card dark">
-          <div class="objective-number">01</div>
-          <h3>Negocio & Growth</h3>
-          <p>
-            Incremento negocio en Mapfre España: excelencia en la ejecución del servicio, identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas o nuevos casos de uso que lleguen a presentarse a cliente y/o conseguir renovación o crecimiento de la cuenta.
-          </p>
-        </div>
-
-        <div class="objective-card blue">
-          <div class="objective-number">02</div>
-          <h3>Ownership & Expertise</h3>
-          <p>
-            Como ranger de ultimate service (Acortador URLs): conocer end to end de la solución, impulsar su evolución, nuevas funcionalidades, evangelización interna y apoyo en reuniones comerciales.
-          </p>
-        </div>
-
-        <div class="objective-card purple">
-          <div class="objective-number">03</div>
-          <h3>Formación & Skills</h3>
-          <p>
-            Adquirir conocimientos de SQL y manejar la parte de QueryStudio de SFMC y/o especialización en agentes de IA.
-          </p>
-        </div>
-
-        <div class="objective-card light">
-          <div class="objective-number">04</div>
-          <h3>CV & Visibilidad</h3>
-          <p>
-            Tener completado y actualizado el CV VASS.
-          </p>
-        </div>
-
-      </div>
-
-      <div class="advisor">
-        <h3>Objetivo Advisor</h3>
-        <p>
-          Potenciar capacidades de liderazgo y mentoring mediante el acompañamiento continuo de la persona asignada, estableciendo un plan de desarrollo con objetivos claros, feedback periódico a su Team Leader y seguimiento de evolución durante 2026.
-        </p>
-      </div>
-
-    </div>
-
-    <div class="footer">
-      <p>NATEEVO · Martech & Customer Strategy</p>
-      <div class="badge">People Growth Plan</div>
-    </div>
-
+<header>
+  <!-- NATEEVO official logo SVG (white) -->
+  <a href="javascript:void(0)" onclick="clearFilters()" style="display:flex;align-items:center;">
+    <svg class="logo-svg" viewBox="0 0 815 119" xmlns="http://www.w3.org/2000/svg">
+      <style>.s0{fill:#ffffff}</style>
+      <path class="s0" d="m245.1 21.2h36.8v96.2h22.2v-96.2h36.9v-19.6h-95.9z"/>
+      <path class="s0" d="m669.1 5.1c-1.8 6.9-4.2 14.8-6.9 23.4-2.7 8.5-5.7 17.2-8.8 25.8-3.1 8.6-6.2 16.9-9.4 24.7q-2.6 6.3-5.1 11.7-2.4-5.4-5.1-11.7c-3.2-7.8-6.4-16.1-9.5-24.7-3.1-8.7-6-17.4-8.8-25.8-2.7-8.6-5.1-16.4-6.9-23.4l-0.9-3.4h-22.7l1.5 5.8c2.2 8.5 5 17.9 8.2 27.8 3.2 9.9 6.7 19.9 10.4 29.7 3.7 9.8 7.5 19.1 11.4 27.8 3.9 8.7 7.6 16.2 11 22.3l1.3 2.3h20.1l1.3-2.3c3.4-6 7.1-13.5 11-22.3 3.8-8.7 7.7-18 11.4-27.8 3.7-9.7 7.2-19.7 10.4-29.7 3.2-9.9 6-19.3 8.2-27.8l1.5-5.8h-22.7z"/>
+      <path fill-rule="evenodd" class="s0" d="m814.3 59.5c0 10-1 18.8-3 26.1-2 7.6-5.4 14-10 18.9-4.6 5-10.5 8.7-17.6 11-6.8 2.3-14.9 3.4-24.2 3.4-9.3 0-17.4-1.2-24.2-3.4-7.1-2.3-13-6-17.6-11-4.6-4.9-8-11.3-10.1-18.9-2.1-7.3-3.1-16.1-3.1-26.1 0-10 1.1-18.8 3.1-26.1 2.1-7.6 5.5-14 10.1-18.9 4.6-5 10.5-8.7 17.6-11 6.8-2.3 14.9-3.4 24.2-3.4 9.3 0 17.4 1.2 24.2 3.4 7.1 2.3 13 6 17.6 11 4.6 4.9 7.9 11.3 10 18.9 2 7.3 3 16.1 3 26.1zm-22.3 0c0-7.4-0.7-13.9-2-19.1-1.3-4.9-3.2-8.9-5.7-11.9-2.5-2.9-5.7-5.1-9.6-6.5-4.1-1.5-9.3-2.3-15.2-2.3-6.1 0-11.2 0.8-15.4 2.3-3.9 1.4-7.1 3.6-9.6 6.5-2.5 2.9-4.4 6.9-5.6 11.8-1.3 5.3-1.9 11.7-1.9 19.2 0 7.5 0.6 14 1.9 19.2 1.2 4.9 3.1 8.9 5.6 11.8 2.5 2.9 5.7 5.1 9.6 6.5 4.2 1.5 9.3 2.3 15.4 2.3 5.9 0 11.1-0.8 15.2-2.3 3.9-1.4 7.1-3.6 9.6-6.5 2.6-3 4.5-7 5.7-11.9 1.3-5.2 2-11.6 2-19.1z"/>
+      <path class="s0" d="m227.5 83.8c-3.2-10-6.7-20-10.4-29.7-3.7-9.8-7.5-19.2-11.4-27.8-3.9-8.8-7.6-16.3-11-22.3l-1.3-2.3h-20.1l-1.3 2.3c-3.4 6-7.1 13.5-11 22.3-3.8 8.7-7.7 18.1-11.4 27.8-3.7 9.8-7.2 19.8-10.4 29.7-3.2 9.9-5.9 19.3-8.2 27.9l-1.5 5.8h22.6l0.9-3.4c1.1-4.2 2.4-8.7 3.8-13.5 1.2-4.2 2.6-8.6 4.1-13.1l4.9-14.4c1.5-4.2 3-8.5 4.5-12.7 1.9-5.2 3.8-10.3 5.8-15.1 1.9-4.8 3.9-9.4 5.7-13.6 0.5-1.1 0.9-2.1 1.4-3.1 0.4 1 0.9 2 1.4 3 1.8 4.1 3.7 8.7 5.8 13.7 2 4.9 4 9.9 5.8 15.1 1.6 4.3 3.1 8.5 4.5 12.7l4.9 14.4c1.5 4.5 2.8 8.9 4.1 13.1 1.4 4.8 2.7 9.3 3.8 13.5l0.9 3.4h22.6l-1.5-5.8c-2-8.6-4.8-17.9-8-27.9z"/>
+      <g>
+        <path class="s0" d="m389 21.2h63.9v-19.6h-86.1v115.8h87.3v-19.6h-65.1z"/>
+        <path class="s0" d="m402.6 52h30.3v19.4h-30.3z"/>
+      </g>
+      <g>
+        <path class="s0" d="m520.1 52h30.3v19.4h-30.3z"/>
+        <path class="s0" d="m504 21.2h63.9v-19.6h-86v115.8h87.3v-19.6h-65.2z"/>
+      </g>
+      <path class="s0" d="m78.2 1.7v72.8c-16.5-25.9-35.8-50.3-57.8-72.8h-19.7v115.6h21l-0.1-83.6c22.6 25.7 41.7 53.8 57.3 83.6h20.4v-115.6z"/>
+    </svg>
+  </a>
+  <div class="header-right">
+    <span class="header-year">Objetivos 2026</span>
+    <div class="header-divider"></div>
+    <span class="header-count" id="headerCount"></span>
   </div>
+</header>
+
+<div class="controls print-hide">
+  <span class="ctrl-label">Perfil</span>
+  <select class="ctrl-select" id="filterPerfil" onchange="applyFilters()">
+    <option value="">Todos los perfiles</option>
+  </select>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Team Leader</span>
+  <select class="ctrl-select" id="filterTL" onchange="applyFilters()">
+    <option value="">Todos</option>
+    <option value="Irene">Irene</option>
+    <option value="Ainhoa">Ainhoa</option>
+    <option value="Gago">Gago</option>
+    <option value="Laura">Laura</option>
+  </select>
+  <button class="btn-clear" onclick="clearFilters()">Ver todos</button>
+  <span class="ctrl-results" id="ctrlCount"></span>
+</div>
+
+<main id="main"></main>
+<div class="toast" id="toast"></div>
+
+<script>
+const profiles = [
+  {nombre:"Alba Mañanes",tl:"Irene",categoria:"V3 · Sr. Consultant",advisor:false,obj1:"Generación de negocio en los diferentes proyectos: identificar oportunidades de negocio y liderar/coordinar al menos una propuesta comercial que llegue a presentársele a cliente, o conseguir crecimiento de la cuenta (mejora de tarifas, nuevos perfiles o nuevos proyectos).",obj2:"Proponer o participar activamente en iniciativas internas, o identificar pain points a nivel de proyecto o a nivel de área que se puedan resolver con soluciones de innovación de NATEEVO.",obj3:"Adquirir conocimientos prácticos de SFMC y Certificación PMO.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Alberto Garcia Donas",tl:"Ainhoa",categoria:"V3 · Sr. Consultant",advisor:true,obj1:"Sesiones Kick Off y 3 QBR (Quarterly Business Review) con cliente.",obj2:"Gestión de proyecto integral, asegurando una correcta gestión de tareas y cargas, así como Controlling: asegurar un margen mensual y anual del 50%, levantar la mano al detectar posibles desviaciones y proponer soluciones de mejora + IO Personal por debajo de 10%.",obj3:"Como ranger de Ultimate Service transversal: conocer end-to-end la solución, hacer una presentación comercial, hacer una presentación interna y sesión en el Consejo de Sabios.",objCV:"Certificación Salesforce Loyalty.",objAdv:"Conseguir sensibilidad de negocio para convertir todo el conocimiento técnico en oportunidades de incremento de valor."},
+  {nombre:"Alicia Escobar",tl:"Gago",categoria:"V2.B · Consultant",advisor:true,obj1:"Incremento de negocio: hacer 3 presentaciones anuales a cliente de proyectos de crecimiento basados en alguna de las palancas de valor de área que respondan a los objetivos de negocio de cliente.",obj2:"Funciones de JP — Gestora Económico: empezar a conocer cómo usar un económico para propuestas pequeñas a cliente. Imputaciones, facturación y margen: desenvolverse sin dudas respecto a estos puntos, conocimiento consolidado.",obj3:"Aumentar el conocimiento de la herramienta respecto a nuevos casos de uso para proponer a cliente.",objCV:"Admin.",objAdv:"Capacidad de transmitir control del proyecto y seguridad tanto a cliente como al equipo con el que trabajas en el proyecto."},
+  {nombre:"Amparo Domingo",tl:"Laura",categoria:"V3 · Sr. Consultant",advisor:true,obj1:"Incremento negocio en Mapfre España: excelencia en la ejecución del servicio, identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas/nuevos casos de uso que lleguen a presentársele a cliente y/o conseguir renovación o crecimiento de la cuenta.",obj2:"Como ranger de Ultimate Service (Acortador URLs): conocer end-to-end la solución, impulsar su evolución (mejoras, nuevas funcionalidades...), dar a conocer a todo el equipo de OMAMI dicho servicio y apoyar en reuniones en las que se intente vender a clientes.",obj3:"Adquirir conocimientos de SQL y manejar la parte de QueryStudio de SFMC y/o especialización en agentes de IA.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:"Como advisor: potenciar capacidades de liderazgo y mentoring mediante el acompañamiento continuo de la persona asignada, estableciendo un plan de desarrollo con objetivos claros, feedback periódico a su Team Leader y seguimiento de evolución durante 2026."},
+  {nombre:"Ana Cristina Tato",tl:"Irene",categoria:"",advisor:false,obj1:"Entender y aplicar los procesos y metodología de trabajo de NATEEVO y Havaianas (equipos de trabajo internos...).",obj2:"Diseñar al menos 2 nuevos casos de uso con impacto en negocio y que maximicen las funcionalidades de la plataforma (documentar y presentar a Team Leader y Advisor).",obj3:"Formación en IA / Certificación PMO.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Ana Franco",tl:"Ainhoa",categoria:"V2.B · Consultant",advisor:true,obj1:"Tener adecuadamente documentados todos los casos de éxito trabajados.",obj2:"Valor de área: seleccionar 1 Ultimate Service acorde a tu proyecto y organizar una reunión comercial con cliente para venderlo.",obj3:"Incremento de negocio: hacer 3 presentaciones anuales a cliente de proyectos de crecimiento basados en alguna de las palancas de valor de área que respondan a los objetivos de negocio de cliente.",objCV:"Acreditación: Cross-Channel.",objAdv:"Proactividad y nuevas oportunidades en el proyecto: desarrollar habilidades de liderazgo para influir en los procesos internos y con cliente, promoviendo nuevos casos de uso/soluciones basadas en datos y tendencias digitales."},
+  {nombre:"Bárbara Aperador",tl:"Irene",categoria:"",advisor:false,obj1:"Valor de área: detectar nuevas oportunidades en Havaianas para aumentar el presupuesto anual.",obj2:"Entender y aplicar los procesos y metodología de trabajo de NATEEVO y Havaianas (equipos de trabajo internos...).",obj3:"Admin.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Belén Otero",tl:"Laura",categoria:"V3 · Sr. Consultant",advisor:false,obj1:"Generación de negocio en Havaianas, Dorsia y resto de cuentas en las que estás involucrada: identificar oportunidades de negocio y liderar/coordinar al menos una propuesta comercial que llegue a presentársele a cliente, o conseguir crecimiento de alguna de sus cuentas (mejora de tarifas, nuevos perfiles o nuevos proyectos).",obj2:"Como Champion de Campaign Management: generar documentación, activar iniciativas de ayuda a los equipos para la mejora de sus procesos de gestión de campañas, evangelizar al equipo, hacer sesiones con OMAMI.",obj3:"Certificación y/o adquirir conocimientos de AJO y/o en Marketing Agéntico (Adobe o Salesforce).",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Beltrán Gonzalez",tl:"Gago",categoria:"V3 · Sr. Consultant",advisor:true,obj1:"Incremento de negocio: hacer 3 presentaciones anuales a cliente de proyectos de crecimiento basados en alguna de las palancas de valor de área que respondan a los objetivos de negocio de cliente.",obj2:"Valor de área — Personalization: proponer a cliente 3 casos de uso donde se utilicen las nuevas palancas de personalización.",obj3:"Ser champion de procesos internos (Ultimate Services, Presentación de Casos de Uso, Presentación de Referencias a nivel de área).",objCV:"Perso.",objAdv:"Asesoramiento a perfiles más junior en la gestión de proyectos y algunas labores más técnicas a nivel de proyecto y también como Champion de procesos internos."},
+  {nombre:"Carlos Castro",tl:"Irene",categoria:"",advisor:false,obj1:"Valor de área: detectar nuevas oportunidades en MOEVE para aumentar el presupuesto anual.",obj2:"Proponer o participar activamente en iniciativas internas, o identificar pain points a nivel de proyecto o a nivel de área que se puedan resolver con soluciones de innovación de NATEEVO.",obj3:"Formación en IA.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Elizabeth Marticorena",tl:"Laura",categoria:"V3 · Sr. Consultant",advisor:false,obj1:"Incremento de negocio: excelencia en la ejecución de proyectos que garantice la continuidad de las cuentas operadas, y liderar/participar en, al menos, 6 preventas anuales a clientes de proyectos de crecimiento basados en alguna de las palancas de valor de área.",obj2:"Colaborar activamente en las iniciativas de loyalty/customer strategy que se lleven a cabo a lo largo de 2026: eventos, informe de loyalty, loyalty talks...",obj3:"Formación en IA para research e Inglés.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Inés Molero",tl:"Irene",categoria:"",advisor:false,obj1:"Incremento negocio en CCEP: excelencia en la ejecución del servicio, identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas/nuevos casos de uso que lleguen a presentársele a cliente y/o conseguir renovación o crecimiento de la cuenta.",obj2:"Proponer o participar activamente en iniciativas internas, o identificar pain points a nivel de proyecto o a nivel de área que se puedan resolver con soluciones de innovación de NATEEVO.",obj3:"Certificación PMO / Admin.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Irene Sánchez",tl:"Laura",categoria:"V1",advisor:false,obj1:"Como JP en Avolta: revisar los flujos de generación de campañas y proponer mejoras en los procesos (documentar y presentar a Team Leader y Advisor).",obj2:"Diseñar al menos 2 nuevos casos de uso con impacto en negocio y que maximicen las funcionalidades de la plataforma (documentar y presentar a Team Leader y Advisor).",obj3:"Certificación Email Specialist.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Isabel Ruiz",tl:"Laura",categoria:"V3 · Sr. Consultant",advisor:true,obj1:"Incremento negocio en Telepizza: excelencia en la ejecución del servicio, identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas/nuevos casos de uso que lleguen a presentársele a cliente y/o conseguir renovación o crecimiento de la cuenta.",obj2:"Proponer o participar activamente en iniciativas internas, o identificar pain points a nivel de proyecto o a nivel de área que se puedan resolver con soluciones de innovación de NATEEVO.",obj3:"Certificación Marketing Cloud Engagement Consultant.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:"Como advisor: potenciar capacidades de liderazgo y mentoring mediante el acompañamiento continuo de la persona asignada, estableciendo un plan de desarrollo con objetivos claros, feedback periódico a su Team Leader y seguimiento de evolución durante 2026."},
+  {nombre:"Itziar Gorraiz",tl:"Laura",categoria:"V1",advisor:false,obj1:"En el marco del proyecto de Mapfre Corp, revisar el grado de madurez de los países y aplicar mejoras en base a su stack tecnológico.",obj2:"Diseñar al menos 2 nuevos casos de uso con impacto en negocio y que maximicen las funcionalidades de la plataforma (documentar y presentar a Team Leader y Advisor).",obj3:"Certificación Email Specialist.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Jose Antonio Donda",tl:"Ainhoa",categoria:"V2.A · Consultant",advisor:true,obj1:"Controlling: asegurar un margen mensual y anual del 50%, levantar la mano al detectar posibles desviaciones y proponer soluciones de mejora.",obj2:"Valor de área: seleccionar 1 Ultimate Service acorde a tu proyecto y organizar una reunión comercial con cliente para venderlo.",obj3:"Incremento de negocio: hacer 3 presentaciones anuales a cliente de proyectos de crecimiento basados en alguna de las palancas de valor de área que respondan a los objetivos de negocio de cliente.",objCV:"Admin.",objAdv:"Fortalecer la autoconfianza y el empoderamiento en la toma de decisiones, defendiendo ideas con seguridad y aportando valor en nuevos casos de uso y soluciones. Ganar autonomía."},
+  {nombre:"Juan Colorado",tl:"Gago",categoria:"V1 · Junior Consultant",advisor:true,obj1:"Valor del área: seleccionar 1 Ultimate Service acorde a tu proyecto, validarlo con la JP y organizar una reunión comercial con cliente para venderlo, siempre y cuando tenga cabida en la estrategia anual y responda a los objetivos de cliente.",obj2:"Proactividad para generar casos de uso de negocio y soluciones a problemas de cliente sin acompañamiento directo del JP.",obj3:"Capacidad para resolver problemas de manera autónoma sin tener que recurrir a la JP de tu proyecto. Además, conocer el E2E de los procesos, overall de la cuenta y modelo de datos.",objCV:"Email Specialist & Admin.",objAdv:"Pensamiento estratégico, identificación de oportunidades que aporten valor y tengan sentido en el proyecto en el que participas."},
+  {nombre:"Kyle Beek",tl:"Ainhoa",categoria:"V3 · Consultant",advisor:true,obj1:"Como ranger de Ultimate Service: conocer end-to-end la solución, hacer una presentación comercial, hacer una presentación interna y sesión en el Consejo de Sabios.",obj2:"Controlling: asegurar un margen mensual y anual del 50%, levantar la mano al detectar posibles desviaciones y proponer soluciones de mejora.",obj3:"Liderar con Ori QBR anuales donde se pongan en valor los insights de negocio y se creen espacios para las 3 presentaciones anuales a cliente de proyectos de crecimiento basados en alguna de las palancas de valor de área.",objCV:"Email Specialist.",objAdv:"Mejorar la capacidad para trabajar bajo presión y en momentos de incertidumbre. Mejorar la forma de recibir cambios repentinos y entender que un proyecto como Avolta puede ser cambiante en ciertos momentos. Relativizar."},
+  {nombre:"Laura Salmón",tl:"Irene",categoria:"V3 · Sr. Consultant",advisor:false,obj1:"Proponer o participar activamente en iniciativas internas, o identificar pain points a nivel de proyecto o a nivel de área que se puedan resolver con soluciones de innovación de NATEEVO.",obj2:"Incremento negocio en Endesa: excelencia en la ejecución del servicio, identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas/nuevos casos de uso que lleguen a presentársele a cliente y/o conseguir crecimiento de la cuenta.",obj3:"Formación en IA.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Laura Sanchez",tl:"Gago",categoria:"V3 · Consultant",advisor:true,obj1:"Como Champion y ranger de Ultimate Services: conocer end-to-end la solución, hacer una presentación comercial, hacer una presentación interna y ser un apoyo para los Rangers de tu vertical de US.",obj2:"Controlling: asegurar un margen mensual y anual del 50%, levantar la mano al detectar posibles desviaciones y proponer soluciones de mejora.",obj3:"Valor de área: identificar qué Ultimate Service podría ser acorde a tu proyecto, ver si tiene cabida y hacer una presentación comercial para intentar venderlo.",objCV:"Perso.",objAdv:"Mejorar la capacidad de trabajar al mismo nivel de calidad cuando el escenario es menos cómodo o más inestable."},
+  {nombre:"Leandro Bustamante",tl:"Irene",categoria:"V3 · Sr. Consultant",advisor:true,obj1:"Proponer o participar activamente en iniciativas internas, o identificar pain points a nivel de proyecto o a nivel de área que se puedan resolver con soluciones de innovación de NATEEVO.",obj2:"Retomar el proyecto de la PoC de la IA en Club Mapfre. Revisar y proponer mejoras para nueva presentación a cliente.",obj3:"Certificación Consultant.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:"Como advisor: potenciar capacidades de liderazgo y mentoring mediante el acompañamiento continuo de la persona asignada, estableciendo un plan de desarrollo con objetivos claros, feedback periódico a su Team Leader y seguimiento de evolución durante 2026."},
+  {nombre:"Leticia Remetería",tl:"Irene",categoria:"V3 · Sr. Consultant",advisor:false,obj1:"Incremento negocio en Club Mapfre: excelencia en la ejecución del servicio, identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas/nuevos casos de uso que lleguen a presentársele a cliente y/o conseguir renovación o crecimiento de la cuenta.",obj2:"Proponer o participar activamente en iniciativas internas, o identificar pain points a nivel de proyecto o a nivel de área que se puedan resolver con soluciones de innovación de NATEEVO.",obj3:"Formación en IA.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Mar Ramos",tl:"Irene",categoria:"V3 · Sr. Consultant",advisor:false,obj1:"Incremento negocio en Avolta: excelencia en la ejecución del servicio, identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas/nuevos casos de uso que lleguen a presentársele a cliente y/o conseguir renovación o crecimiento de la cuenta.",obj2:"Proponer o participar activamente en iniciativas internas, o identificar pain points a nivel de proyecto o a nivel de área que se puedan resolver con soluciones de innovación de NATEEVO.",obj3:"Formación en IA y Certificación Consultant.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Maria Hernandez",tl:"Gago",categoria:"",advisor:true,obj1:"Valor de área: seleccionar 1 Ultimate Service acorde a tu proyecto y organizar una reunión con cliente para mostrar su valor.",obj2:"Como ranger de Ultimate Service: conocer end-to-end la solución, hacer una presentación comercial, hacer una presentación interna y sesión en el Consejo de Sabios.",obj3:"Tener adecuadamente documentados todos los casos de éxito trabajados.",objCV:"Personalization.",objAdv:"Ampliar el conocimiento técnico de la herramienta de SFMC — con la formación y con el nuevo proyecto de Mobilize, resumir los desarrollos llevados a cabo a lo largo del 2025."},
+  {nombre:"Mariana Marques",tl:"Laura",categoria:"V3 · Sr. Consultant",advisor:true,obj1:"Incremento negocio: garantizar la continuidad del perfil en Avolta y promover el crecimiento de la cuenta identificando oportunidades y siendo propositiva (liderar al menos dos propuestas/casos de uso a lo largo de 2026, y presentársela a cliente).",obj2:"Colaborar activamente en las iniciativas de loyalty/customer strategy que se lleven a cabo a lo largo de 2026: eventos, informe de loyalty, loyalty talks...",obj3:"Certificación Email Specialist.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:"Como advisor: potenciar capacidades de liderazgo y mentoring mediante el acompañamiento continuo de la persona asignada, estableciendo un plan de desarrollo con objetivos claros, feedback periódico a su Team Leader y seguimiento de evolución durante 2026."},
+  {nombre:"Mario Rubio",tl:"Gago",categoria:"V1 · Junior Consultant",advisor:true,obj1:"Calidad: mejorar en el front con cliente, calidad de los entregables, de las propuestas y asegurar un nivel de calidad en la ejecución que sea óptimo.",obj2:"Proactividad para generar casos de uso de negocio y soluciones a problemas de cliente sin acompañamiento directo del JP.",obj3:"Como ranger de los Consejos de Sabios: ayudar a coordinar, hacer seguimiento, planificar sesiones de Consejos de Sabios.",objCV:"Admin.",objAdv:"Mejorar la capacidad de demostrar y tener seguridad en las tareas que llevas a cabo tanto a nivel interno como externo. Y tener un pensamiento crítico acerca de las tareas que desarrollas de cara a aportar recomendaciones de mejora o cuestionar el por qué de dicha tarea."},
+  {nombre:"Marta Perez",tl:"Gago",categoria:"V2.A · Consultant",advisor:true,obj1:"Valor de área: seleccionar 1 Ultimate Service acorde a tu proyecto y organizar una reunión con cliente para mostrar su valor.",obj2:"Sesiones Kick Off y 3 QBR (Quarterly Business Review) con cliente.",obj3:"Ser Ranger de procesos internos (Toolkit — Consejo de Sabios).",objCV:"Loyalty.",objAdv:"Gestión de emociones en momentos complicados. Ni todo es tan bueno ni todo es tan malo. Aprender a gestionar los nervios en momentos de incertidumbre y proyectar seguridad y calma."},
+  {nombre:"Mercedes Pozo",tl:"Laura",categoria:"V3 · Sr. Consultant",advisor:false,obj1:"Incremento negocio: garantizar la continuidad del servicio en Club Mapfre y promover el crecimiento de la cuenta identificando oportunidades y siendo propositiva (liderar al menos dos propuestas/casos de uso a lo largo de 2026, y presentársela a cliente).",obj2:"Colaborar activamente en las iniciativas de loyalty/customer strategy que se lleven a cabo a lo largo de 2026: eventos, informe de loyalty, loyalty talks...",obj3:"Formación: IA, certificación PMO y/o Salesforce Loyalty. Y adoptar un pensamiento estratégico que permita identificar propuestas de valor que tengan sentido en Club Mapfre.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Miriam Eskali",tl:"Laura",categoria:"V2 · Consultant",advisor:false,obj1:"Generación de negocio en Mapfre Corp y resto de cuentas en las que está involucrada: identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas/casos de uso que lleguen a presentársele a cliente, o conseguir crecimiento de alguna de sus cuentas.",obj2:"Impulsar la disciplina de loyalty en Barcelona y colaborar activamente en las iniciativas de loyalty/customer strategy que se lleven a cabo a lo largo de 2026: eventos, informe de loyalty, loyalty talks...",obj3:"Formación en IA para research.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Nuria Barquero",tl:"Gago",categoria:"V2.A · Consultant",advisor:false,obj1:"Sesiones Kick Off y 3 QBR (Quarterly Business Review) con cliente.",obj2:"Valor de área: seleccionar 1 Ultimate Service acorde a tu proyecto y organizar una reunión con cliente para mostrar su valor.",obj3:"Tener adecuadamente documentados todos los casos de éxito trabajados.",objCV:"Consultant.",objAdv:null},
+  {nombre:"Oriana Pepe",tl:"Ainhoa",categoria:"V3 · Sr. Consultant",advisor:true,obj1:"Liderar con Kyle 2 QBR anuales donde se pongan en valor los insights de negocio y se creen espacios para las 3 presentaciones anuales a cliente de proyectos de crecimiento basados en alguna de las palancas de valor de área.",obj2:"Como ranger de Ultimate Service (Contenidos Magnéticos & Frequency Cap): ejercicio crítico de mejora de procesos y retomar las auditorías bajo una perspectiva de evolución, no de mantenimiento.",obj3:"Organizar y optimizar procesos Avolta y conseguir liderazgo frente al equipo, aportando valor extra a cliente.",objCV:"Capacidad analítica para generación de insights de negocio.",objAdv:"Gestionar momentos de tensión, ayudando a otros a gestionar diferencias con otros perfiles, manteniendo una visión a largo plazo y aprendiendo a posicionarse con seguridad y elevar liderazgo dentro del grupo."},
+  {nombre:"Paula Medina",tl:"Ainhoa",categoria:"V2.A · Consultant",advisor:true,obj1:"Controlling: asegurar un margen mensual y anual del 50%, levantar la mano al detectar posibles desviaciones y proponer soluciones de mejora.",obj2:"Valor de área: seleccionar 1 Ultimate Service acorde a tu proyecto y organizar una reunión comercial con cliente para venderlo.",obj3:"Calidad de entregables, memoria de procesos, documentación y ordenar el SharePoint.",objCV:"Consultant (o en su defecto las dos certis de la IA).",objAdv:"Mejorar el pensamiento crítico: analizar el por qué de las cosas, pudiendo ofrecer soluciones y mejoras en base a las conclusiones obtenidas. Empoderarse con el front con cliente y en presentaciones. Creer en tus capacidades."},
+  {nombre:"Raquel Carrillo",tl:"Laura",categoria:"V3 · Sr. Consultant",advisor:false,obj1:"Generación de negocio en Repsol y resto de cuentas en las que está involucrada: identificar oportunidades de negocio y liderar/coordinar al menos una propuesta/caso de uso que llegue a presentársele a cliente, o conseguir crecimiento de alguna de sus cuentas.",obj2:"Colaborar activamente en las iniciativas de loyalty/customer strategy que se lleven a cabo a lo largo de 2026: eventos, informe de loyalty, loyalty talks...",obj3:"Formación en IA / SFMC Next.",objCV:"Tener completado y actualizado el CV VASS.",objAdv:null},
+  {nombre:"Yuna",tl:"Gago",categoria:"V2.B · Consultant",advisor:false,obj1:"Incremento de negocio: hacer 3 presentaciones anuales a cliente de proyectos de crecimiento basados en alguna de las palancas de valor de área que respondan a los objetivos de negocio de cliente.",obj2:"",obj3:"",objCV:"",objAdv:null}
+];
+
+function getWeights(p){
+  return p.advisor && p.objAdv
+    ? {p1:35,p2:35,form:15,cv:5,adv:10}
+    : {p1:40,p2:40,form:15,cv:5,adv:0};
+}
+
+function slug(n){return encodeURIComponent(n.trim());}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+function copyShareLink(name){
+  const url=location.href.split('?')[0].split('#')[0]+'?perfil='+slug(name);
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>showToast('✓ Enlace copiado al portapapeles'));
+  } else {
+    const i=document.createElement('input');i.value=url;
+    document.body.appendChild(i);i.select();document.execCommand('copy');
+    document.body.removeChild(i);showToast('✓ Enlace copiado al portapapeles');
+  }
+}
+
+function printCard(name){
+  document.querySelectorAll('.profile-card').forEach(c=>{
+    c.classList.toggle('print-hide',c.dataset.nombre!==name);
+  });
+  window.print();
+  document.querySelectorAll('.profile-card').forEach(c=>c.classList.remove('print-hide'));
+}
+
+function buildCard(p){
+  const w=getWeights(p);
+  const bar=`
+    <div class="wbar-seg" style="width:${w.p1}%;background:var(--c1)"></div>
+    <div class="wbar-seg" style="width:${w.p2}%;background:var(--c2)"></div>
+    <div class="wbar-seg" style="width:${w.form}%;background:var(--c3)"></div>
+    <div class="wbar-seg" style="width:${w.cv}%;background:var(--c4)"></div>
+    ${w.adv?`<div class="wbar-seg" style="width:${w.adv}%;background:var(--c5)"></div>`:''}
+  `;
+  const legend=`
+    <div class="wleg-item"><div class="wleg-dot" style="background:var(--c1)"></div>Puesto 1&nbsp;<span class="wleg-pct">${w.p1}%</span></div>
+    <div class="wleg-item"><div class="wleg-dot" style="background:var(--c2)"></div>Puesto 2&nbsp;<span class="wleg-pct">${w.p2}%</span></div>
+    <div class="wleg-item"><div class="wleg-dot" style="background:var(--c3)"></div>Formación &amp; Soft Skills&nbsp;<span class="wleg-pct">${w.form}%</span></div>
+    <div class="wleg-item"><div class="wleg-dot" style="background:var(--c4)"></div>CV&nbsp;<span class="wleg-pct">${w.cv}%</span></div>
+    ${w.adv?`<div class="wleg-item"><div class="wleg-dot" style="background:var(--c5)"></div>Advisor&nbsp;<span class="wleg-pct">${w.adv}%</span></div>`:''}
+  `;
+  const row=(type,num,icon,label,text,pct)=>{
+    if(!text)return'';
+    return`<div class="obj-row type-${type}">
+      <div class="obj-icon-wrap">${icon}</div>
+      <div class="obj-body">
+        <div class="obj-type-label"><span class="obj-num">${num}</span>${label}</div>
+        <p class="obj-text">${text}</p>
+      </div>
+      <div class="obj-pct">${pct}%</div>
+    </div>`;
+  };
+  const rows=[
+    row('p1','1','🎯','Objetivo de Puesto',p.obj1,w.p1),
+    row('p2','2','🎯','Objetivo de Puesto',p.obj2,w.p2),
+    row('form','3','📚','Formación &amp; Soft Skills',p.obj3,w.form),
+    row('cv','4','📄','Objetivo CV',p.objCV,w.cv),
+    (p.advisor&&p.objAdv)?row('adv','★','⭐','Objetivo Advisor',p.objAdv,w.adv):''
+  ].join('');
+  const catPill=p.categoria?`<span class="meta-pill">${p.categoria}</span>`:'';
+  const advPill=(p.advisor&&p.objAdv)?`<span class="meta-pill meta-pill-adv">⭐ Advisor</span>`:'';
+  return`<div class="profile-card" data-nombre="${p.nombre}" data-tl="${p.tl}" id="card-${slug(p.nombre)}">
+    <div class="card-head">
+      <div class="ch-left">
+        <div class="person-name">${p.nombre}</div>
+        <div class="person-meta">
+          <span class="meta-pill meta-pill-tl">TL: ${p.tl}</span>
+          ${catPill}${advPill}
+        </div>
+      </div>
+      <div class="ch-right">
+        <div class="card-btns print-hide">
+          <button class="btn-card btn-share" onclick="copyShareLink('${p.nombre.replace(/'/g,"\\'")}')">
+            <svg width="12" height="12" fill="none" viewBox="0 0 16 16"><path d="M11 10.5a2.5 2.5 0 1 1 0 4 2.5 2.5 0 0 1 0-4zm0 0V3.5m-6 2a2.5 2.5 0 1 1 0-4 2.5 2.5 0 0 1 0 4zm0 0 6 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            Compartir
+          </button>
+          <button class="btn-card btn-pdf" onclick="printCard('${p.nombre.replace(/'/g,"\\'")}')">
+            <svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="2.5" y="1" width="11" height="14" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 5.5h6M5 8.5h6M5 11.5h3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            PDF
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="weights-section">
+      <div class="wlabel">Distribución de pesos</div>
+      <div class="wbar-track">${bar}</div>
+      <div class="wlegend">${legend}</div>
+    </div>
+    <div class="objectives">${rows}</div>
+  </div>`;
+}
+
+function applyFilters(){
+  const selP=document.getElementById('filterPerfil').value;
+  const selTL=document.getElementById('filterTL').value;
+  const filtered=profiles.filter(p=>{
+    if(selP&&p.nombre!==selP)return false;
+    if(selTL&&p.tl!==selTL)return false;
+    return true;
+  });
+  const main=document.getElementById('main');
+  if(filtered.length===0){
+    main.innerHTML=`<div class="empty-state"><h3>Sin resultados</h3><p>Prueba con otros filtros.</p></div>`;
+  } else {
+    main.innerHTML=filtered.map(buildCard).join('');
+  }
+  const n=filtered.length;
+  document.getElementById('ctrlCount').textContent=`${n} perfil${n!==1?'es':''}`;
+  document.getElementById('headerCount').textContent=`${n} / ${profiles.length} perfiles`;
+  const url=new URL(location.href);
+  if(selP)url.searchParams.set('perfil',selP);else url.searchParams.delete('perfil');
+  if(selTL)url.searchParams.set('tl',selTL);else url.searchParams.delete('tl');
+  history.replaceState(null,'',url.toString());
+}
+
+function clearFilters(){
+  document.getElementById('filterPerfil').value='';
+  document.getElementById('filterTL').value='';
+  applyFilters();
+}
+
+// Populate names
+const sel=document.getElementById('filterPerfil');
+[...profiles].sort((a,b)=>a.nombre.localeCompare(b.nombre,'es')).forEach(p=>{
+  const o=document.createElement('option');o.value=p.nombre;o.textContent=p.nombre;sel.appendChild(o);
+});
+
+// Read URL on load
+const params=new URLSearchParams(location.search);
+if(params.get('perfil'))document.getElementById('filterPerfil').value=params.get('perfil');
+if(params.get('tl'))document.getElementById('filterTL').value=params.get('tl');
+applyFilters();
+</script>
 </body>
 </html>
