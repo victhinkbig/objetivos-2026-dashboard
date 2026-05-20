@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Objetivos 2026 - NATEEVO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #111827 40%, #1d4ed8 100%);
+      color: white;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      top: -120px;
+      right: -120px;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+      bottom: -90px;
+      right: 120px;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .brand p {
+      font-size: 18px;
+      opacity: 0.85;
+    }
+
+    .year {
+      font-size: 22px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.1);
+      padding: 12px 18px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+    }
+
+    .profile {
+      padding: 36px 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .profile-card {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .profile-card span {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .profile-card h3 {
+      font-size: 22px;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .content {
+      padding: 48px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .objective-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .objective-card {
+      border-radius: 22px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      transition: transform 0.2s ease;
+    }
+
+    .objective-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .objective-card::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .objective-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 18px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    .objective-card h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .objective-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
+    }
+
+    .dark {
+      background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+      color: white;
+    }
+
+    .blue {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+    }
+
+    .purple {
+      background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+      color: white;
+    }
+
+    .light {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #111827;
+    }
+
+    .light .objective-number {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .advisor {
+      margin-top: 28px;
+      padding: 32px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .advisor::after {
+      content: "MENTOR";
+      position: absolute;
+      right: 24px;
+      bottom: 8px;
+      font-size: 64px;
+      font-weight: 800;
+      opacity: 0.06;
+      letter-spacing: 4px;
+    }
+
+    .advisor h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .advisor p {
+      line-height: 1.8;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer {
+      padding: 28px 48px;
+      background: #f8fafc;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .badge {
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .profile,
+      .objective-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header,
+      .content,
+      .profile,
+      .footer {
+        padding: 28px;
+      }
+
+      .brand {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .brand h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <div class="brand">
+        <div>
+          <h1>Objetivos 2026</h1>
+          <p>Plan de desarrollo individual · NATEEVO</p>
+        </div>
+        <div class="year">2026</div>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="profile-card">
+        <span>Profesional</span>
+        <h3>Amparo</h3>
+      </div>
+
+      <div class="profile-card">
+        <span>Team Leader</span>
+        <h3>Laura</h3>
+      </div>
+
+      <div class="profile-card">
+        <span>Categoría</span>
+        <h3>V3 · Sr. Consultant</h3>
+      </div>
+    </div>
+
+    <div class="content">
+      <h2 class="section-title">Objetivos individuales</h2>
+
+      <div class="objective-grid">
+
+        <div class="objective-card dark">
+          <div class="objective-number">01</div>
+          <h3>Negocio & Growth</h3>
+          <p>
+            Incremento negocio en Mapfre España: excelencia en la ejecución del servicio, identificar oportunidades de negocio y liderar/coordinar al menos dos propuestas o nuevos casos de uso que lleguen a presentarse a cliente y/o conseguir renovación o crecimiento de la cuenta.
+          </p>
+        </div>
+
+        <div class="objective-card blue">
+          <div class="objective-number">02</div>
+          <h3>Ownership & Expertise</h3>
+          <p>
+            Como ranger de ultimate service (Acortador URLs): conocer end to end de la solución, impulsar su evolución, nuevas funcionalidades, evangelización interna y apoyo en reuniones comerciales.
+          </p>
+        </div>
+
+        <div class="objective-card purple">
+          <div class="objective-number">03</div>
+          <h3>Formación & Skills</h3>
+          <p>
+            Adquirir conocimientos de SQL y manejar la parte de QueryStudio de SFMC y/o especialización en agentes de IA.
+          </p>
+        </div>
+
+        <div class="objective-card light">
+          <div class="objective-number">04</div>
+          <h3>CV & Visibilidad</h3>
+          <p>
+            Tener completado y actualizado el CV VASS.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="advisor">
+        <h3>Objetivo Advisor</h3>
+        <p>
+          Potenciar capacidades de liderazgo y mentoring mediante el acompañamiento continuo de la persona asignada, estableciendo un plan de desarrollo con objetivos claros, feedback periódico a su Team Leader y seguimiento de evolución durante 2026.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <p>NATEEVO · Martech & Customer Strategy</p>
+      <div class="badge">People Growth Plan</div>
+    </div>
+
+  </div>
+</body>
+</html>
